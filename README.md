@@ -8,7 +8,7 @@ A volunteer opens an assigned street, chooses a household member and records the
 
 ## Run the app and API
 
-With Git access to this private repository and Docker Compose installed, run:
+With Git and Docker Compose installed, run:
 
 ```sh
 git clone https://github.com/Dror-Bengal/field-survey-desk.git
@@ -48,3 +48,7 @@ python tests/visit.py --clean
 The browser test signs in with separate volunteer and manager sessions, selects a resident, submits an answer and checks the dashboard count. It matches the server-issued ID and the volunteer’s note against the manager’s API response, then checks the corresponding **visible table row**. The test uses simulated coordinates in the fictional district. It sends actual requests to the local services.
 
 Use `--clean` on a fresh database. Omit it to record another test visit, or use `--verify-id ID` to check an existing visit after restarting without recording another. Add `--capture ./captures` to save screenshots from the run.
+
+## License
+
+Nayto’s code is distributed under the [MIT License](LICENSE). Third-party software and media retain their respective terms.
