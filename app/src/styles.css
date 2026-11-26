@@ -1,0 +1,523 @@
+/* Voter Survey App — design system
+ * Modern civic: confident, neutral, dense.
+ * Single accent (deep teal). Status colors are functional, not decorative.
+ */
+
+:root {
+  /* ── Neutrals (warm-cool balanced) ───────────────────────────────── */
+  --bg:        oklch(0.985 0.003 220);
+  --surface:   oklch(1 0 0);
+  --surface-2: oklch(0.97 0.005 220);
+  --surface-3: oklch(0.94 0.006 220);
+  --border:    oklch(0.90 0.008 220);
+  --border-2:  oklch(0.83 0.010 220);
+  --text:      oklch(0.18 0.010 220);
+  --text-2:    oklch(0.42 0.010 220);
+  --text-3:    oklch(0.62 0.010 220);
+
+  /* ── Accent: deep teal ───────────────────────────────────────────── */
+  --accent:        oklch(0.45 0.07 200);
+  --accent-fg:     oklch(0.99 0 0);
+  --accent-tint:   oklch(0.95 0.02 200);
+  --accent-strong: oklch(0.38 0.08 200);
+
+  /* ── Semantic statuses (low-saturation, color-blind safe-ish) ────── */
+  --st-asked-bg:   oklch(0.94 0.04 155);
+  --st-asked-fg:   oklch(0.36 0.09 155);
+  --st-asked-dot:  oklch(0.55 0.12 155);
+
+  --st-pending-bg: oklch(0.96 0.005 220);
+  --st-pending-fg: oklch(0.50 0.010 220);
+  --st-pending-dot:oklch(0.70 0.010 220);
+
+  --st-refused-bg: oklch(0.95 0.04 60);
+  --st-refused-fg: oklch(0.42 0.10 60);
+  --st-refused-dot:oklch(0.65 0.13 60);
+
+  --st-not-home-bg: oklch(0.94 0.015 280);
+  --st-not-home-fg: oklch(0.44 0.05 280);
+  --st-not-home-dot:oklch(0.62 0.08 280);
+
+  --flag-bg: oklch(0.94 0.05 28);
+  --flag-fg: oklch(0.42 0.13 28);
+
+  /* ── Spacing scale (4-based) ─────────────────────────────────────── */
+  --r-xs: 4px;  --r-sm: 6px;  --r-md: 8px;  --r-lg: 12px; --r-xl: 16px; --r-2xl: 24px;
+
+  /* ── Type ────────────────────────────────────────────────────────── */
+  --ff-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --ff-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --fs-base: 14px;
+
+  /* shadows */
+  --shadow-sm: 0 1px 2px rgba(15,23,33,.04), 0 1px 1px rgba(15,23,33,.03);
+  --shadow-md: 0 2px 4px rgba(15,23,33,.04), 0 8px 24px rgba(15,23,33,.06);
+  --shadow-lg: 0 8px 24px rgba(15,23,33,.08), 0 24px 64px rgba(15,23,33,.10);
+}
+
+/* ── Theme variants ─────────────────────────────────────────────────── */
+[data-theme="dark"] {
+  --bg:        oklch(0.16 0.012 220);
+  --surface:   oklch(0.20 0.012 220);
+  --surface-2: oklch(0.24 0.012 220);
+  --surface-3: oklch(0.28 0.012 220);
+  --border:    oklch(0.30 0.014 220);
+  --border-2:  oklch(0.40 0.016 220);
+  --text:      oklch(0.96 0.005 220);
+  --text-2:    oklch(0.75 0.010 220);
+  --text-3:    oklch(0.55 0.010 220);
+
+  --accent:        oklch(0.72 0.10 200);
+  --accent-fg:     oklch(0.10 0 0);
+  --accent-tint:   oklch(0.28 0.04 200);
+  --accent-strong: oklch(0.82 0.10 200);
+
+  --st-asked-bg:   oklch(0.30 0.05 155);
+  --st-asked-fg:   oklch(0.85 0.10 155);
+  --st-asked-dot:  oklch(0.70 0.13 155);
+
+  --st-pending-bg: oklch(0.27 0.008 220);
+  --st-pending-fg: oklch(0.72 0.010 220);
+  --st-pending-dot:oklch(0.55 0.010 220);
+
+  --st-refused-bg: oklch(0.30 0.05 60);
+  --st-refused-fg: oklch(0.86 0.10 60);
+  --st-refused-dot:oklch(0.74 0.13 60);
+
+  --st-not-home-bg: oklch(0.28 0.025 280);
+  --st-not-home-fg: oklch(0.82 0.08 280);
+  --st-not-home-dot:oklch(0.68 0.10 280);
+
+  --flag-bg: oklch(0.32 0.07 28);
+  --flag-fg: oklch(0.86 0.12 28);
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.4);
+  --shadow-md: 0 4px 12px rgba(0,0,0,.4);
+  --shadow-lg: 0 12px 32px rgba(0,0,0,.5);
+}
+
+[data-theme="hc"] {
+  --bg:        oklch(1 0 0);
+  --surface:   oklch(1 0 0);
+  --surface-2: oklch(0.96 0 0);
+  --surface-3: oklch(0.92 0 0);
+  --border:    oklch(0.30 0 0);
+  --border-2:  oklch(0.10 0 0);
+  --text:      oklch(0.05 0 0);
+  --text-2:    oklch(0.20 0 0);
+  --text-3:    oklch(0.35 0 0);
+
+  --accent:        oklch(0.30 0.18 250);
+  --accent-fg:     oklch(1 0 0);
+  --accent-tint:   oklch(0.92 0.05 250);
+  --accent-strong: oklch(0.20 0.20 250);
+
+  --st-asked-bg:   oklch(0.92 0.10 155);
+  --st-asked-fg:   oklch(0.20 0.16 155);
+  --st-asked-dot:  oklch(0.40 0.18 155);
+
+  --st-refused-bg: oklch(0.92 0.10 50);
+  --st-refused-fg: oklch(0.30 0.18 50);
+  --st-refused-dot:oklch(0.50 0.20 50);
+}
+
+/* ── Density & font scale (driven by tweaks) ─────────────────────────── */
+[data-density="compact"]    { --row-py: 6px;  --row-px: 10px; --gap: 6px;  --card-r: 8px;  }
+[data-density="comfortable"]{ --row-py: 10px; --row-px: 14px; --gap: 12px; --card-r: 12px; }
+[data-density="spacious"]   { --row-py: 14px; --row-px: 18px; --gap: 16px; --card-r: 14px; }
+
+/* ── Reset ──────────────────────────────────────────────────────────── */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+
+/* Defensive backstop: the surveyor app and admin app each manage their own
+ * full-viewport layout, so nothing should ever push the page wider than the
+ * viewport. If something slips through, hide the resulting horizontal scroll
+ * rather than letting users see a broken layout. */
+html, body, #root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--ff-sans);
+  font-size: var(--fs-base);
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'cv02','cv03','cv04','cv11';
+  text-rendering: optimizeLegibility;
+}
+button { font-family: inherit; cursor: pointer; }
+input, select, textarea { font-family: inherit; font-size: inherit; }
+a { color: inherit; }
+
+/* ── Buttons ────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 10px 16px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1;
+  transition: background .12s, border-color .12s, transform .04s;
+  white-space: nowrap;
+}
+.btn:hover { background: var(--surface-2); }
+.btn:active { transform: scale(0.98); }
+.btn-primary {
+  background: var(--accent); color: var(--accent-fg); border-color: var(--accent);
+}
+.btn-primary:hover { background: var(--accent-strong); border-color: var(--accent-strong); }
+.btn-ghost { border-color: transparent; background: transparent; }
+.btn-ghost:hover { background: var(--surface-2); }
+.btn-lg { padding: 14px 20px; font-size: 16px; min-height: 52px; }
+.btn-block { width: 100%; }
+
+/* ── Inputs ─────────────────────────────────────────────────────────── */
+.input {
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  color: var(--text);
+  outline: none;
+  transition: border-color .12s, box-shadow .12s;
+}
+.input::placeholder { color: var(--text-3); }
+.input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in oklch, var(--accent) 18%, transparent);
+}
+
+/* iOS Safari auto-zooms when a focused input has computed font-size < 16px,
+ * which then makes the page wider than the viewport (horizontal scroll). The
+ * `max(16px, 1rem)` form forces the floor without overriding users who have
+ * a larger system font (rem > 16px). Applies to all native form controls;
+ * inline style overrides at usage sites still win. */
+input, textarea, select {
+  font-size: max(16px, 1rem);
+}
+
+/* ── Cards / chrome ─────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--card-r, 12px);
+}
+.divide > * + * { border-top: 1px solid var(--border); }
+
+/* ── Status pill ────────────────────────────────────────────────────── */
+.status-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+.status-pill::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: .9;
+}
+.status-asked    { background: var(--st-asked-bg); color: var(--st-asked-fg); }
+.status-pending  { background: var(--st-pending-bg); color: var(--st-pending-fg); }
+.status-refused  { background: var(--st-refused-bg); color: var(--st-refused-fg); }
+.status-not-home { background: var(--st-not-home-bg); color: var(--st-not-home-fg); }
+.status-flag     { background: var(--flag-bg); color: var(--flag-fg); }
+
+/* ── Demographic badge ─────────────────────────────────────────────── */
+.demo-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 2px 6px;
+  border-radius: 5px;
+  font-size: 11px;
+  font-weight: 500;
+  background: var(--surface-2);
+  color: var(--text-2);
+  border: 1px solid var(--border);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Tabs ───────────────────────────────────────────────────────────── */
+.tabs {
+  display: flex;
+  background: var(--surface-2);
+  padding: 3px;
+  border-radius: var(--r-md);
+  gap: 2px;
+}
+.tabs button {
+  flex: 1;
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 8px 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-2);
+  border-radius: 6px;
+  transition: background .12s, color .12s;
+}
+.tabs button[data-active="true"] {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ── Misc ───────────────────────────────────────────────────────────── */
+.tabular { font-variant-numeric: tabular-nums; }
+.mono    { font-family: var(--ff-mono); }
+.muted   { color: var(--text-2); }
+.subtle  { color: var(--text-3); }
+hr.sep { border: 0; border-top: 1px solid var(--border); margin: 0; }
+
+/* ── Index landing page ─────────────────────────────────────────────── */
+.landing {
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  padding: 32px;
+}
+.landing-card {
+  max-width: 720px; width: 100%;
+}
+
+/* small phone status bar (custom for mobile screens, not iOS frame) */
+.phone-statusbar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 18px 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  background: var(--surface);
+}
+
+/* generic scroller */
+.scroll-y { overflow-y: auto; -webkit-overflow-scrolling: touch; }
+
+/* badge for tier */
+.tier-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 18px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: var(--surface-3);
+  color: var(--text-2);
+  border: 1px solid var(--border);
+  font-variant-numeric: tabular-nums;
+}
+
+.kbd {
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--surface-3);
+  color: var(--text-2);
+  border: 1px solid var(--border);
+}
+
+/* keep the “stage” for the device frame centered */
+.stage {
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg);
+  padding: 24px;
+  gap: 24px;
+}
+
+/* responsive toggle target */
+@media (max-width: 900px) {
+  .stage { padding: 12px; }
+}
+
+/* ── Admin layout ─────────────────────────────────────────────────────
+ * Two-pane: 240px sidebar | flex-1 main. Stacks vertically on phone.
+ * Both panes use overflow internally so the page never grows past 100vh/100vw.
+ */
+
+.admin-shell {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.admin-sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.admin-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  gap: 1px;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.admin-sidebar-footer {
+  padding: 12px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.admin-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.admin-header {
+  height: 56px;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 12px;
+}
+
+.admin-content {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 24px;
+}
+
+.admin-content-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ── Admin page widgets ──────────────────────────────────────────────
+ * KPI cards and chart pairs are the two layouts that need to reflow on
+ * resize. KPI uses auto-fit grid for graceful 4→3→2→1 breakpoints; charts
+ * stack at phone widths.
+ */
+
+.admin-kpi-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.admin-chart-row {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 768px) {
+  .admin-shell {
+    flex-direction: column;
+    height: auto;
+    min-height: 100dvh;
+    overflow: visible;
+  }
+
+  .admin-sidebar {
+    width: 100%;
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .admin-main {
+    overflow: visible;
+  }
+
+  .admin-content {
+    padding: 16px;
+    overflow-y: visible;
+  }
+
+  .admin-chart-row {
+    grid-template-columns: 1fr;
+  }
+
+  /* Tables are wide; let them scroll horizontally inside their own card
+   * rather than push the whole page sideways. */
+  .admin-content table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  /* Opt-in card layout for tables that want to actually reflow on mobile
+   * instead of horizontal-scrolling. Add className="responsive" to the
+   * <table>. Each <tr> becomes a card; <td>s stack vertically; the <thead>
+   * (column headers) hides because the card layout makes them redundant.
+   *
+   * Inline styles set on the table cells from the desktop layout (padding,
+   * text-align: right on the action column) override CSS unless we use
+   * !important here — that's why every override below carries it. */
+  .admin-content table.responsive {
+    display: table;
+    overflow-x: visible;
+    white-space: normal;
+  }
+  .admin-content table.responsive thead {
+    display: none;
+  }
+  .admin-content table.responsive tbody,
+  .admin-content table.responsive tr {
+    display: block;
+    width: 100%;
+  }
+  .admin-content table.responsive tr {
+    border: 1px solid var(--border) !important;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    padding: 10px 12px !important;
+    background: var(--surface);
+    cursor: default !important;
+  }
+  .admin-content table.responsive td {
+    display: block !important;
+    padding: 4px 0 !important;
+    border: none !important;
+    width: auto !important;
+    text-align: left !important;
+    white-space: normal !important;
+  }
+  /* Action button rows: give them some breathing room from the data above
+   * and let the inline-flex children wrap if both buttons can't fit. */
+  .admin-content table.responsive td[data-mobile-actions] {
+    margin-top: 6px;
+    padding-top: 8px !important;
+    border-top: 1px solid var(--border) !important;
+  }
+  .admin-content table.responsive td[data-mobile-actions] > div {
+    flex-wrap: wrap;
+  }
+}

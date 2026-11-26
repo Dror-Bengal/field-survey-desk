@@ -1,0 +1,42 @@
+services:
+  survey:
+    build: .
+    depends_on:
+      database:
+        condition: service_healthy
+      identity:
+        condition: service_healthy
+    environment:
+      PORT: 3000
+      MONGODB_URI: mongodb://database:27017
+      MONGODB_DB: field_survey
+      FIREBASE_AUTH_EMULATOR_HOST: identity:9099
+      GCLOUD_PROJECT: demo-field-survey
+    ports:
+      - "127.0.0.1:${SURVEY_PORT:-18798}:3000"
+    healthcheck:
+      test: ["CMD","node","-e","fetch('http://localhost:3000/health/ready').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 4s
+      timeout: 4s
+      retries: 30
+  database:
+    image: mongo:7.0
+    volumes:
+      - surveys:/data/db
+    healthcheck:
+      test: ["CMD","mongosh","--quiet","--eval","quit(db.runCommand({ping:1}).ok?0:1)"]
+      interval: 4s
+      timeout: 5s
+      retries: 30
+  identity:
+    build: ./identity
+    volumes:
+      - accounts:/state
+    healthcheck:
+      test: ["CMD","node","-e","fetch('http://localhost:9099/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 4s
+      timeout: 4s
+      retries: 30
+volumes:
+  surveys:
+  accounts:

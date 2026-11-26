@@ -1,0 +1,7 @@
+**
+!api/
+!api/**
+!app/
+!app/**
+**/node_modules
+**/dist
